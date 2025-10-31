@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "generate": "dotenv -e .env -- prisma generate",
-    "build": "pnpm run generate && tsc",
+    "build": "pnpm prisma generate && tsc",
     "start": "node dist/index.js",
     "webhook": "ngrok http --url=teaching-evenly-salmon.ngrok-free.app 3000",
     "migrate": "dotenv -e .env -- prisma migrate dev",
