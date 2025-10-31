@@ -17,14 +17,15 @@ dotenv.config({ path: path.resolve(__dirname, "./.env") });
 const app = express();
 
 const PORT = process.env.PORT ?? 8000;
-
 app.use(
   cors({
-     origin: "*",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 
 app.use(bodyParser.json());
 
