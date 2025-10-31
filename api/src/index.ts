@@ -20,9 +20,7 @@ const PORT = process.env.PORT ?? 8000;
 
 app.use(
   cors({
-    origin: [
-      "https://highway-delite-lovat.vercel.app/"
-    ],
+    origin: "https://highway-delite-lovat.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
