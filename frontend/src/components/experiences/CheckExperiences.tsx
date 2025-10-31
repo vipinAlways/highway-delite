@@ -218,8 +218,8 @@ const CheckExperiences = () => {
   }
 
   return (
-    <div className="h-full w-full relative flex justify-evenly gap-8 p-4">
-      <div className="flex flex-col items-center h-full w-3/5 gap-4">
+    <div className="h-full w-full relative flex max-md:flex-col justify-evenly gap-8 p-4">
+      <div className="flex flex-col items-center h-full md:w-3/5 w-full gap-4">
         <img
           src={data?.imageUrl ?? ""}
           alt={data.name}
@@ -329,7 +329,7 @@ const CheckExperiences = () => {
         </div>
       </div>
 
-      <div className="sticky top-4 left-0 h-fit w-1/5 min-w-[280px]">
+      <div className="md:sticky top-4 left-0 h-fit md:w-1/5 w-full min-w-[280px]">
         <div className="p-4 rounded-lg shadow-lg w-full bg-[#EFEFEF] space-y-3 text-[#3c3c3c]">
           <div className="flex justify-between w-full">
             <span>Starts at</span>

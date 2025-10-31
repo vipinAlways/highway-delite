@@ -16,9 +16,7 @@ const app = express();
 const PORT = process.env.PORT ?? 8000;
 app.use(cors({
     origin: [
-        "http://localhost:5173",
-        "https://checkout.stripe.com/",
-        "https://teaching-evenly-salmon.ngrok-free.app",
+        "https://highway-delite-lovat.vercel.app/"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
