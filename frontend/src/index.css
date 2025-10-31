@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+
+.btn-color{
+  @apply bg-[#FFD643]
+}

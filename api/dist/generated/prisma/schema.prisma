@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../dist/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  address     String
+  city        String
+  state       String
+  imageUrl    String?
+  price       Float
+  isActive    Boolean  @default(true)
+  slots       Slot[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([city, isActive])
+}
+
+enum TimeSlot {
+  MORNING
+  AFTERNOON
+  EVENING
+  NIGHT
+}
+
+model Slot {
+  id             String   @id @default(uuid())
+  experienceId   String
+  date           DateTime @db.Date
+  timeSlot       TimeSlot
+  totalCapacity  Int      @default(5)
+  bookedCount    Int      @default(0)
+  availableSeats Int      @default(5)
+  isActive       Boolean  @default(true)
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  bookings   Booking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([experienceId, date, timeSlot])
+  @@index([date, timeSlot])
+  @@index([experienceId, date])
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  userMail      String
+  slotId        String
+  numberOfSeats Int           @default(1)
+  totalAmount   Float
+  status        BookingStatus @default(PENDING)
+  userName      String
+  slot          Slot          @relation(fields: [slotId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slotId])
+  @@index([status])
+}
