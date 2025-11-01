@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT ?? 8000;
 app.use(
   cors({
-    origin: ["https://highway-delite-lovat.vercel.app/","http://localhost:5173/"],
+    origin: ["https://highway-delite-lovat.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
