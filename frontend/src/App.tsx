@@ -24,7 +24,7 @@ const App = () => {
           }`,
           { signal: controller.signal, mode: "cors" }
         );
-        console.log(res);
+        console.log({res});
 
         if (!res.ok) {
           console.log({ res });
